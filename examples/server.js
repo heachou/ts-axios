@@ -71,6 +71,41 @@ router.get('/error/timeout', function(req, res) {
   }, 3000)
 })
 
+router.post('/extend/post', function(req, res) {
+  res.json(req.body)
+})
+router.get('/extend/get', function(req, res) {
+  res.json({
+    msg: `hello world get`
+  })
+})
+router.options('/extend/options', function(req, res) {
+  res.json({
+    msg: `hello world options`
+  })
+})
+router.delete('/extend/delete', function(req, res) {
+  res.json({
+    msg: `hello world delete`
+  })
+})
+router.head('/extend/head', function(req, res) {
+  res.json({
+    msg: `hello world head`
+  })
+})
+router.put('/extend/put', function(req, res) {
+  res.json({
+    msg: `hello world put`
+  })
+})
+router.patch('/extend/patch', function(req, res) {
+  res.json({
+    msg: `hello world patch`
+  })
+})
+
+
 app.use(router)
 
 const port = process.env.PORT || 8090
