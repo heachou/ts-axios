@@ -56,4 +56,16 @@ export interface AxiosError extends Error {
   response: AxiosResponse
 }
 
+export interface AxiosInterceptorManager<T> {
+  use(resolved: ResolvedFn<T>, reject?: RejectFn): number
+  eject(id: number): void
+}
+
+export interface ResolvedFn<T = any> {
+  (val: T): T | Promise<T>
+}
+export interface RejectFn {
+  (error: any): any
+}
+
 export interface AxiosPromise extends Promise<AxiosResponse> {}
