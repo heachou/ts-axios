@@ -15,6 +15,11 @@ export type Method =
   | 'PATCH'
 
 export interface Axios {
+  interceptors: {
+    request: AxiosInterceptorManager<AxiosRequestConfig>
+    response: AxiosInterceptorManager<AxiosResponse>
+  }
+  defaults: AxiosRequestConfig
   request(config: AxiosRequestConfig): AxiosPromise
   get(url: string, config?: AxiosRequestConfig): AxiosPromise
   delete(url: string, config?: AxiosRequestConfig): AxiosPromise
