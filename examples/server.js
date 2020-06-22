@@ -25,21 +25,21 @@ app.use(express.static(__dirname))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-router.get('/simple/get', function(req, res) {
+router.get('/simple/get', function (req, res) {
   res.json({
     msg: `hello world`
   })
 })
 
-router.get('/base/get', function(req, res) {
+router.get('/base/get', function (req, res) {
   res.json(req.query)
 })
 
-router.post('/base/post', function(req, res) {
+router.post('/base/post', function (req, res) {
   res.json(req.body)
 })
 
-router.post('/base/buffer', function(req, res) {
+router.post('/base/buffer', function (req, res) {
   let msg = []
   req.on('data', (chunk) => {
     if (chunk) {
@@ -52,7 +52,7 @@ router.post('/base/buffer', function(req, res) {
   })
 })
 
-router.get('/error/get', function(req, res) {
+router.get('/error/get', function (req, res) {
   if (Math.random() > 0.5) {
     res.json({
       msg: `hello world`
@@ -63,7 +63,7 @@ router.get('/error/get', function(req, res) {
   }
 })
 
-router.get('/error/timeout', function(req, res) {
+router.get('/error/timeout', function (req, res) {
   setTimeout(() => {
     res.json({
       msg: `hello world`
@@ -71,43 +71,49 @@ router.get('/error/timeout', function(req, res) {
   }, 3000)
 })
 
-router.post('/extend/post', function(req, res) {
+router.post('/extend/post', function (req, res) {
   res.json(req.body)
 })
-router.get('/extend/get', function(req, res) {
+router.get('/extend/get', function (req, res) {
   res.json({
     msg: `hello world get`
   })
 })
-router.options('/extend/options', function(req, res) {
+router.options('/extend/options', function (req, res) {
   res.json({
     msg: `hello world options`
   })
 })
-router.delete('/extend/delete', function(req, res) {
+router.delete('/extend/delete', function (req, res) {
   res.json({
     msg: `hello world delete`
   })
 })
-router.head('/extend/head', function(req, res) {
+router.head('/extend/head', function (req, res) {
   res.json({
     msg: `hello world head`
   })
 })
-router.put('/extend/put', function(req, res) {
+router.put('/extend/put', function (req, res) {
   res.json({
     msg: `hello world put`
   })
 })
-router.patch('/extend/patch', function(req, res) {
+router.patch('/extend/patch', function (req, res) {
   res.json({
     msg: `hello world patch`
   })
 })
 
-router.get("/interceptor/get",function(req,res){
+router.get("/interceptor/get", function (req, res) {
   res.json({
     msg: 'hello'
+  })
+})
+
+router.post('/config/post', function (req, res) {
+  res.json({
+    data: req.body
   })
 })
 

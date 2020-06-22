@@ -8,6 +8,7 @@ import {
 } from '../types'
 import dispatchRequest from './dispatchRequest'
 import InterceptorManager from './InterceptorManager'
+import mergeConfig from './mergeConfig'
 
 interface Interceptors {
   request: InterceptorManager<AxiosRequestConfig>
@@ -42,6 +43,7 @@ export default class Axios {
     } else {
       config = url
     }
+    config = mergeConfig(this.defaults, config)
 
     const chain: PromiseChain[] = [
       {
@@ -57,6 +59,7 @@ export default class Axios {
     })
     let promise = Promise.resolve(config)
     while (chain.length) {
+      // chain.shift() 可能是 undefined 这里需要断言
       const { resolved, rejected } = chain.shift()!
       promise = promise.then(resolved, rejected)
     }

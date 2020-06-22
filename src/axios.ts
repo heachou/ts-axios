@@ -3,8 +3,6 @@ import { extend } from './helps/util'
 import Axios from './core/Axios'
 import defaults from './defaults'
 
-console.log(defaults)
-
 function createInstance(initConfig: AxiosRequestConfig): AxiosInstance {
   const context = new Axios(initConfig)
   const instance = Axios.prototype.request.bind(context)
