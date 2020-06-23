@@ -4,7 +4,16 @@ import { createError } from '../helps/error'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
-    const { data, url, method = 'get', headers, responseType, timeout, cancelToken } = config
+    const {
+      data,
+      url,
+      method = 'get',
+      headers,
+      responseType,
+      timeout,
+      cancelToken,
+      withCredentials
+    } = config
     const request = new XMLHttpRequest()
     if (responseType) {
       request.responseType = responseType
@@ -12,7 +21,9 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     if (timeout) {
       request.timeout = timeout
     }
-
+    if (withCredentials) {
+      request.withCredentials = true
+    }
     request.ontimeout = function handleTimeout() {
       reject(createError(`Timeout of ${timeout} ms exceeded`, config, 'ECONNABORTED', request))
     }
