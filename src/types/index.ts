@@ -37,7 +37,6 @@ export interface AxiosInstance extends Axios {
 
 export interface AxiosStatic extends AxiosInstance {
   create(config?: AxiosRequestConfig): AxiosInstance
-
   CancelToken: CancelTokenStatic
   Cancel: CancelStatic
   isCancel: (val: any) => boolean
@@ -70,6 +69,7 @@ export interface CancelTokenStatic {
 export interface CancelToken {
   promise: Promise<Cancel>
   reason?: Cancel
+  throwIfRequested(): void
 }
 
 export interface Canceler {

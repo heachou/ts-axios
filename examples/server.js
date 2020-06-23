@@ -117,6 +117,23 @@ router.post('/config/post', function (req, res) {
   })
 })
 
+router.get('/cancel/get', function (req, res) {
+  setTimeout(()=>{
+    res.json({
+      data: 'hello~'
+    })
+  }, 400)
+})
+
+router.post('/cancel/post', function (req, res) {
+  setTimeout(()=>{
+    res.json({
+      data: 'hello~2'
+    })
+  }, 400)
+})
+
+
 
 app.use(router)
 
