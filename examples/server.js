@@ -13,6 +13,12 @@ const router = express.Router()
 
 require('./server2')
 
+app.use(express.static(__dirname, {
+  setHeaders (res) {
+    res.cookie('XSRF-TOKEN-D', '1234abc')
+  }
+}))
+
 app.use(webpackDevMiddleware(compiler, {
   publicPath: '/__build__/',
   stats: {
