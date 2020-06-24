@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const multipart = require('connect-multiparty')
+const atob = require('atob')
 const webpack = require('webpack')
 const path = require('path')
 const webpackDevMiddleware = require('webpack-dev-middleware')
@@ -155,6 +156,13 @@ router.get('/more/get', function (req, res) {
 router.post('/more/upload', function (req, res) {
   console.log(req.body, req.files)
   res.end('upload success!')
+})
+
+router.post('/more/post', function (req, res) {
+  const auth = req.headers.authorization
+  const [type, credentials] = auth.split(' ')
+  console.log(atob(credentials))
+  res.json(req.body)
 })
 
 app.use(router)
