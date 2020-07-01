@@ -34,7 +34,7 @@ export function parseHeaders(headers: string): any {
     if (!key) {
       return
     }
-    let val = vals.join(':')
+    let val = vals.join(':').trim()
     parsed[key] = val
   })
   return parsed

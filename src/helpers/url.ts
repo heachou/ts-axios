@@ -17,6 +17,8 @@ export function buildURL(
   paramsSerialer?: (params: any) => string
 ): string {
   if (!params) {
+    const markIndex = url.indexOf('#') // 处理 hash
+    url = markIndex === -1 ? url : url.slice(0, markIndex)
     return url
   }
   let serializedParams: string
